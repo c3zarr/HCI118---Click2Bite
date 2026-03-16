@@ -494,7 +494,7 @@ footer {
 }
 
 .btn-login-submit:hover {
-    background: #002244;
+    background: #b22222;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
 }
