@@ -1,7 +1,6 @@
-
 :root {
-    --primary-color: #8b0000; /* Academic Blue */
-    --secondary-color: #f4a261; /* Warm Orange for appetite */
+    --primary-color: #8b0000;
+    --secondary-color: #f4a261;
     --text-dark: #333;
     --text-light: #f4f4f4;
     --bg-light: #f9f9f9;
@@ -34,7 +33,6 @@ ul {
     list-style: none;
 }
 
-/* --- NAVIGATION --- */
 nav {
     background: var(--white);
     box-shadow: var(--shadow);
@@ -79,11 +77,12 @@ nav {
     color: var(--white);
     padding: 0.5rem 1.5rem;
     border-radius: 5px;
-    transition: background 0.3s;
+    transition: all 0.3s;
 }
 
 .btn-login:hover {
     background: #ffffff;
+    color: var(--primary-color);
 }
 
 .menu-toggle {
@@ -92,7 +91,6 @@ nav {
     cursor: pointer;
 }
 
-/* --- HERO SECTION --- */
 .hero {
     background: linear-gradient(rgba(102, 0, 0, 0.8), rgba(255, 255, 255, 0.8)), url('https://www.eduopinions.com/wp-content/uploads/2017/10/Western-Mindanao-State-University-WMSU-campus-610x236.jpg');
     background-size: cover;
@@ -120,6 +118,7 @@ nav {
 }
 
 .cta-button {
+    display: inline-block;
     background: var(--primary-color);
     color: var(--white);
     padding: 1rem 2.5rem;
@@ -134,9 +133,9 @@ nav {
 .cta-button:hover {
     transform: scale(1.05);
     background: #e04b4b;
+    color: var(--white);
 }
 
-/* --- ABOUT SECTION --- */
 .section {
     padding: 5rem 10%;
 }
@@ -170,7 +169,6 @@ nav {
     color: #555;
 }
 
-/* --- HOW IT WORKS --- */
 .steps-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -201,7 +199,6 @@ nav {
     margin-bottom: 0.5rem;
 }
 
-/* --- WHY CHOOSE US --- */
 .features {
     background: var(--primary-color);
     color: var(--white);
@@ -238,7 +235,6 @@ nav {
     margin-bottom: 1rem;
 }
 
-/* --- FOOTER --- */
 footer {
     background: #222;
     color: #aaa;
@@ -246,39 +242,29 @@ footer {
     padding: 2rem;
 }
 
-/* ============================== */
-/* LOGIN MODAL STYLES             */
-/* ============================== */
-
-/* Modal Overlay */
+/* MODAL */
 .modal {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     z-index: 2000;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
 }
 
-.modal.active {
+.modal:target {
     display: flex;
 }
 
 .modal-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(5px);
     animation: fadeIn 0.3s ease;
 }
 
-/* Modal Content */
 .modal-content {
     position: relative;
     background: var(--white);
@@ -290,6 +276,7 @@ footer {
     animation: slideUp 0.3s ease;
     max-height: 90vh;
     overflow-y: auto;
+    z-index: 2;
 }
 
 @keyframes fadeIn {
@@ -308,7 +295,6 @@ footer {
     }
 }
 
-/* Close Button */
 .modal-close {
     position: absolute;
     top: 15px;
@@ -318,13 +304,14 @@ footer {
     font-size: 1.5rem;
     color: #999;
     cursor: pointer;
-    transition: color 0.3s;
+    transition: color 0.3s, background 0.3s;
     width: 35px;
     height: 35px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 3;
 }
 
 .modal-close:hover {
@@ -332,7 +319,6 @@ footer {
     background: #f5f5f5;
 }
 
-/* Modal Header */
 .modal-header {
     text-align: center;
     margin-bottom: 2rem;
@@ -364,7 +350,6 @@ footer {
     font-size: 0.95rem;
 }
 
-/* Form Styles */
 .form-group {
     margin-bottom: 1.25rem;
 }
@@ -397,7 +382,7 @@ footer {
 
 .form-group input:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+    box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
 }
 
 .form-group input.error {
@@ -408,7 +393,6 @@ footer {
     border-color: var(--success-color);
 }
 
-/* Password Wrapper */
 .password-wrapper {
     position: relative;
 }
@@ -434,7 +418,6 @@ footer {
     color: var(--primary-color);
 }
 
-/* Error Message */
 .error-message {
     display: block;
     color: var(--error-color);
@@ -443,7 +426,6 @@ footer {
     min-height: 1rem;
 }
 
-/* Form Options */
 .form-options {
     display: flex;
     justify-content: space-between;
@@ -475,7 +457,6 @@ footer {
     color: var(--secondary-color);
 }
 
-/* Submit Button */
 .btn-login-submit {
     width: 100%;
     padding: 1rem;
@@ -496,7 +477,7 @@ footer {
 .btn-login-submit:hover {
     background: #b22222;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
 }
 
 .btn-login-submit:active {
@@ -507,7 +488,6 @@ footer {
     font-size: 1.2rem;
 }
 
-/* Form Message */
 .form-message {
     margin-top: 1rem;
     padding: 0.75rem;
@@ -531,7 +511,6 @@ footer {
     border: 1px solid #f5c6cb;
 }
 
-/* Modal Footer */
 .modal-footer {
     text-align: center;
     margin-top: 1.5rem;
@@ -554,7 +533,6 @@ footer {
     color: var(--secondary-color);
 }
 
-/* Demo Credentials */
 .demo-credentials {
     margin-top: 1.5rem;
     padding: 1rem;
@@ -572,10 +550,6 @@ footer {
 .demo-credentials strong {
     color: var(--primary-color);
 }
-
-/* ============================== */
-/* USER DASHBOARD STYLES          */
-/* ============================== */
 
 .user-dashboard {
     display: none;
@@ -682,9 +656,6 @@ footer {
     font-size: 0.9rem;
 }
 
-/* ============================== */
-/* RESPONSIVE STYLES              */
-/* ============================== */
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
@@ -703,25 +674,21 @@ footer {
         box-shadow: var(--shadow);
     }
 
-    .nav-links.active {
-        display: flex;
-    }
-
     .hero-content h1 {
         font-size: 2.5rem;
     }
-    
+
     .modal-content {
         margin: 1rem;
         padding: 2rem;
     }
-    
+
     .form-options {
         flex-direction: column;
         gap: 10px;
         align-items: flex-start;
     }
-    
+
     .dashboard-stats {
         grid-template-columns: 1fr;
     }
