@@ -1,490 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Click2Bite | WMSU Canteen Ordering</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Click2Bite | WMSU Canteen Ordering</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!-- Navigation -->
-    <!-- Navigation -->
-        <nav>
-            <div class="logo">
-    <i class="fas fa-utensils"></i>
-    <span>Click2Bite</span>
-        </div>
-            <div class="menu-toggle" id="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#how-it-works">How it Works</a></li>
-                <li><a href="#features">Why Us</a></li>
-                <li><a href="#" class="btn-login" id="loginBtn">Log In</a></li>
-            </ul>
-        </nav>
+<nav>
+<div class="logo">
+<i class="fas fa-utensils"></i>
+<span>Click2Bite</span>
+</div>
 
-    <!-- Hero Section -->
-    <header id="home" class="hero">
-        <div class="hero-content">
-            <h1>Your Food, One Click Away.</h1>
-            <p>A canteen ordering system designed for WMSU students and staffs. Skip the lines, save time, and get your favorite meals faster.</p>
-            <button class="cta-button" id="heroLoginBtn">START ORDERING NOW!</button>
-        </div>
-    </header>
+<div class="menu-toggle" id="mobile-menu">
+<i class="fas fa-bars"></i>
+</div>
 
-    <!-- About Section -->
-    <section id="about" class="section about">
-        <h2 class="section-title">About Click2Bite</h2>
-        <p>
-            Click2Bite is a simple and easy ordering system that helps students and staff order food from the school canteen more easily. It reduces long lines, saves time, and makes getting food quicker and more convenient. With the app, users can check the menu and order their food instantly.
-        </p>
-    </section>
+<ul class="nav-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#how-it-works">How it Works</a></li>
+<li><a href="#features">Why Us</a></li>
+<li><a href="#loginModal" class="btn-login">Log In</a></li>
+</ul>
+</nav>
 
-    <!-- How It Works -->
-    <section id="how-it-works" class="section">
-        <div style="text-align: center;">
-            <h2 class="section-title">How It Works</h2>
-        </div>
-        <div class="steps-grid">
-            <!-- Step 1 -->
-            <div class="step-card">
-                <i class="fas fa-sign-in-alt step-icon"></i>
-                <h3>1. Log In</h3>
-                <p>Sign in securely using your WMSU school account credentials.</p>
-            </div>
-            <!-- Step 2 -->
-            <div class="step-card">
-                <i class="fas fa-hamburger step-icon"></i>
-                <h3>2. Browse & Order</h3>
-                <p>Browse menus from different canteens and add your favorites to the cart.</p>
-            </div>
-            <!-- Step 3 -->
-            <div class="step-card">
-                <i class="fas fa-bell step-icon"></i>
-                <h3>3. Get Notified</h3>
-                <p>Relax! Receive a notification on your phone when your order is ready.</p>
-            </div>
-            <!-- Step 4 -->
-            <div class="step-card">
-                <i class="fas fa-check-circle step-icon"></i>
-                <h3>4. Pick Up</h3>
-                <p>Head to the pickup counter, show your order confirmation, and enjoy!</p>
-            </div>
-        </div>
-    </section>
+<header id="home" class="hero">
+<div class="hero-content">
+<h1>Your Food, One Click Away.</h1>
+<p>
+A canteen ordering system designed for WMSU students and staff.
+Skip the lines, save time, and get your favorite meals faster.
+</p>
+<a href="#loginModal" class="cta-button">START ORDERING NOW!</a>
+</div>
+</header>
 
-    <!-- Why Choose Us -->
-    <section id="features" class="section features">
-        <div style="text-align: center;">
-            <h2 class="section-title">Why Choose Click2Bite?</h2>
-        </div>
-        <div class="features-grid">
-            <div class="feature-box">
-                <i class="fas fa-clock"></i>
-                <h3>Saves Time</h3>
-                <p>No more standing in long queues. Order ahead and pick up when ready.</p>
-            </div>
-            <div class="feature-box">
-                <i class="fas fa-user-friends"></i>
-                <h3>Easy to Use</h3>
-                <p>A simple interface designed for students, by students. Very intuitive.</p>
-            </div>
-            <div class="feature-box">
-                <i class="fas fa-mobile-alt"></i>
-                <h3>Convenient</h3>
-                <p>Order from anywhere on campus using your smartphone.</p>
-            </div>
-        </div>
-    </section>
+<section id="about" class="section about">
+<h2 class="section-title">About Click2Bite</h2>
+<p>
+Click2Bite is a simple and easy ordering system that helps students
+and staff order food from the school canteen more easily.
+It reduces long lines, saves time, and makes getting food quicker
+and more convenient.
+</p>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Click2Bite - WMSU Canteen System. All Rights Reserved.</p>
-    </footer>
+<section id="how-it-works" class="section">
+<h2 class="section-title">How It Works</h2>
+<div class="steps-grid">
 
-    <!-- Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-overlay" id="modalOverlay"></div>
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <div class="modal-header">
-                <div class="modal-logo">
-                    <i class="fas fa-utensils"></i> Click2Bite
-                </div>
-                <h2>Welcome Back!</h2>
-                <p>Log in to your account to continue</p>
-            </div>
-            
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">
-                        <i class="fas fa-envelope"></i> Email Address
-                    </label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                    <span class="error-message" id="emailError"></span>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">
-                        <i class="fas fa-lock"></i> Password
-                    </label>
-                    <div class="password-wrapper">
-                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                        <button type="button" class="toggle-password" id="togglePassword">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                    <span class="error-message" id="passwordError"></span>
-                </div>
-                
-                <div class="form-options">
-                    <label class="remember-me">
-                        <input type="checkbox" id="rememberMe">
-                        <span>Remember me</span>
-                    </label>
-                    <a href="#" class="forgot-password">Forgot Password?</a>
-                </div>
-                
-                <button type="submit" class="btn-login-submit">
-                    <span id="loginText">Log In</span>
-                    <span id="loginLoading" class="loading-spinner" style="display: none;">
-                        <i class="fas fa-spinner fa-spin"></i>
-                    </span>
-                </button>
-                
-                <div class="form-message" id="formMessage"></div>
-            </form>
-            
-            <div class="modal-footer">
-                <p>Don't have an account? <a href="#" id="showRegister">Register here</a></p>
-            </div>
-            
-            <!-- Demo Credentials -->
-            <div class="demo-credentials">
-                <p><strong>Demo Credentials:</strong></p>
-                <p>Email: student@wmsu.edu.ph</p>
-                <p>Password: student123</p>
-            </div>
-        </div>
-    </div>
+<div class="step-card">
+<i class="fas fa-sign-in-alt step-icon"></i>
+<h3>1. Log In</h3>
+<p>Sign in using your WMSU account.</p>
+</div>
 
-    <!-- User Dashboard (shown after login) -->
-    <div class="user-dashboard" id="userDashboard">
-        <div class="dashboard-header">
-            <div class="dashboard-user">
-                <i class="fas fa-user-circle"></i>
-                <span id="userName">User</span>
-            </div>
-            <button class="btn-logout" id="logoutBtn">
-                <i class="fas fa-sign-out-alt"></i> Log Out
-            </button>
-        </div>
-        <div class="dashboard-content">
-            <h2><i class="fas fa-utensils"></i> Welcome to UniHub!</h2>
-            <p>You are now logged in to WMSU Canteen Ordering System.</p>
-            <div class="dashboard-stats">
-                <div class="stat-card">
-                    <i class="fas fa-shopping-cart"></i>
-                    <h3>0</h3>
-                    <p>Orders</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-clock"></i>
-                    <h3>0</h3>
-                    <p>Pending</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>0</h3>
-                    <p>Completed</p>
-                </div>
-            </div>
-            <button class="cta-button" onclick="alert('Menu page coming soon!')">
-                <i class="fas fa-hamburger"></i> Browse Menu
-            </button>
-        </div>
-    </div>
+<div class="step-card">
+<i class="fas fa-hamburger step-icon"></i>
+<h3>2. Browse & Order</h3>
+<p>Choose food and add to cart.</p>
+</div>
 
-    <!-- Simple Script for Mobile Menu -->
-    <script>
-        const menuToggle = document.getElementById('mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
+<div class="step-card">
+<i class="fas fa-bell step-icon"></i>
+<h3>3. Get Notified</h3>
+<p>Receive notification when ready.</p>
+</div>
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+<div class="step-card">
+<i class="fas fa-check-circle step-icon"></i>
+<h3>4. Pick Up</h3>
+<p>Pick up your order and enjoy!</p>
+</div>
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                // Close mobile menu after click
-                navLinks.classList.remove('active');
-            });
-        });
-    </script>
-        <!-- Login Functionality Script -->
-    <script>
-        // DOM Elements
-        const loginBtn = document.getElementById('loginBtn');
-        const heroLoginBtn = document.getElementById('heroLoginBtn');
-        const loginModal = document.getElementById('loginModal');
-        const modalOverlay = document.getElementById('modalOverlay');
-        const modalClose = document.getElementById('modalClose');
-        const loginForm = document.getElementById('loginForm');
-        const togglePassword = document.getElementById('togglePassword');
-        const passwordInput = document.getElementById('password');
-        const emailInput = document.getElementById('email');
-        const emailError = document.getElementById('emailError');
-        const passwordError = document.getElementById('passwordError');
-        const formMessage = document.getElementById('formMessage');
-        const loginText = document.getElementById('loginText');
-        const loginLoading = document.getElementById('loginLoading');
-        const userDashboard = document.getElementById('userDashboard');
-        const logoutBtn = document.getElementById('logoutBtn');
-        const userName = document.getElementById('userName');
+</div>
+</section>
 
-        // Demo users database (simulated)
-        const users = [
-            {
-                email: 'student@wmsu.edu.ph',
-                password: 'student123',
-                name: 'John Student'
-            },
-            {
-                email: 'staff@wmsu.edu.ph',
-                password: 'staff123',
-                name: 'Maria Staff'
-            },
-            {
-                email: 'admin@wmsu.edu.ph',
-                password: 'admin123',
-                name: 'Admin User'
-            }
-        ];
+<section id="features" class="section features">
+<h2 class="section-title">Why Choose Click2Bite?</h2>
+<div class="features-grid">
 
-        // Open Modal Functions
-        function openModal() {
-            loginModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            emailInput.focus();
-        }
+<div class="feature-box">
+<i class="fas fa-clock"></i>
+<h3>Saves Time</h3>
+<p>No more long lines.</p>
+</div>
 
-        // Close Modal Functions
-        function closeModal() {
-            loginModal.classList.remove('active');
-            document.body.style.overflow = '';
-            resetForm();
-        }
+<div class="feature-box">
+<i class="fas fa-user-friends"></i>
+<h3>Easy to Use</h3>
+<p>Designed for students.</p>
+</div>
 
-        // Reset Form
-        function resetForm() {
-            loginForm.reset();
-            emailInput.classList.remove('error', 'success');
-            passwordInput.classList.remove('error', 'success');
-            emailError.textContent = '';
-            passwordError.textContent = '';
-            formMessage.className = 'form-message';
-            formMessage.textContent = '';
-        }
+<div class="feature-box">
+<i class="fas fa-mobile-alt"></i>
+<h3>Convenient</h3>
+<p>Order anywhere on campus.</p>
+</div>
 
-        // Event Listeners for opening modal
-        loginBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal();
-        });
+</div>
+</section>
 
-        heroLoginBtn.addEventListener('click', () => {
-            openModal();
-        });
+<footer>
+<p>© 2026 Click2Bite - WMSU Canteen System</p>
+</footer>
 
-        // Event Listeners for closing modal
-        modalClose.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', closeModal);
+<div class="modal" id="loginModal">
+<a href="#" class="modal-overlay"></a>
 
-        // Close modal on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && loginModal.classList.contains('active')) {
-                closeModal();
-            }
-        });
+<div class="modal-content">
+<a href="#" class="modal-close">
+<i class="fas fa-times"></i>
+</a>
 
-        // Toggle Password Visibility
-        togglePassword.addEventListener('click', () => {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            togglePassword.innerHTML = type === 'password' 
-                ? '<i class="fas fa-eye"></i>' 
-                : '<i class="fas fa-eye-slash"></i>';
-        });
+<div class="modal-header">
+<div class="modal-logo">
+<i class="fas fa-utensils"></i> Click2Bite
+</div>
+<h2>Welcome Back!</h2>
+<p>Log in to your account</p>
+</div>
 
-        // Real-time validation
-        emailInput.addEventListener('blur', validateEmail);
-        passwordInput.addEventListener('blur', validatePassword);
+<form id="loginForm">
+<div class="form-group">
+<label><i class="fas fa-envelope"></i> Email</label>
+<input type="email" id="email" required>
+</div>
 
-        function validateEmail() {
-            const email = emailInput.value.trim();
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
-            if (!email) {
-                emailInput.classList.add('error');
-                emailInput.classList.remove('success');
-                emailError.textContent = 'Email is required';
-                return false;
-            } else if (!emailRegex.test(email)) {
-                emailInput.classList.add('error');
-                emailInput.classList.remove('success');
-                emailError.textContent = 'Please enter a valid email address';
-                return false;
-            } else {
-                emailInput.classList.remove('error');
-                emailInput.classList.add('success');
-                emailError.textContent = '';
-                return true;
-            }
-        }
+<div class="form-group">
+<label><i class="fas fa-lock"></i> Password</label>
+<input type="password" id="password" required>
+</div>
 
-        function validatePassword() {
-            const password = passwordInput.value;
-            
-            if (!password) {
-                passwordInput.classList.add('error');
-                passwordInput.classList.remove('success');
-                passwordError.textContent = 'Password is required';
-                return false;
-            } else if (password.length < 6) {
-                passwordInput.classList.add('error');
-                passwordInput.classList.remove('success');
-                passwordError.textContent = 'Password must be at least 6 characters';
-                return false;
-            } else {
-                passwordInput.classList.remove('error');
-                passwordInput.classList.add('success');
-                passwordError.textContent = '';
-                return true;
-            }
-        }
+<button type="submit" class="btn-login-submit">Log In</button>
+</form>
 
-        // Form Submission
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Validate fields
-            const isEmailValid = validateEmail();
-            const isPasswordValid = validatePassword();
-            
-            if (!isEmailValid || !isPasswordValid) {
-                showMessage('Please fix the errors above', 'error');
-                return;
-            }
-            
-            // Show loading state
-            loginText.style.display = 'none';
-            loginLoading.style.display = 'inline-block';
-            loginForm.querySelector('button[type="submit"]').disabled = true;
-            
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            // Check credentials
-            const email = emailInput.value.trim();
-            const password = passwordInput.value;
-            
-            const user = users.find(u => u.email === email && u.password === password);
-            
-            if (user) {
-                // Successful login
-                showMessage('Login successful! Redirecting...', 'success');
-                
-                // Store user session (simulated)
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                
-                // Hide loading state
-                loginText.style.display = 'inline';
-                loginLoading.style.display = 'none';
-                
-                // Close modal and show dashboard
-                setTimeout(() => {
-                    closeModal();
-                    showDashboard(user.name);
-                }, 1000);
-            } else {
-                // Failed login
-                showMessage('Invalid email or password. Please try again.', 'error');
-                loginText.style.display = 'inline';
-                loginLoading.style.display = 'none';
-                loginForm.querySelector('button[type="submit"]').disabled = false;
-                passwordInput.classList.add('error');
-                passwordInput.classList.remove('success');
-                passwordError.textContent = 'Incorrect password';
-            }
-        });
+<div class="modal-footer">
+<p>
+Don't have an account?
+<a href="#registerModal">Register here</a>
+</p>
+</div>
+</div>
+</div>
 
-        // Show message
-        function showMessage(message, type) {
-            formMessage.textContent = message;
-            formMessage.className = `form-message ${type}`;
-        }
+<div class="modal" id="registerModal">
+<a href="#" class="modal-overlay"></a>
 
-        // Show Dashboard
-        function showDashboard(name) {
-            userName.textContent = name;
-            userDashboard.classList.add('active');
-            
-            // Hide main content sections
-            document.querySelector('.hero').style.display = 'none';
-            document.querySelector('.about').style.display = 'none';
-            document.querySelector('#how-it-works').style.display = 'none';
-            document.querySelector('#features').style.display = 'none';
-            document.querySelector('footer').style.display = 'none';
-            
-            // Update login button
-            loginBtn.innerHTML = '<i class="fas fa-user"></i> ' + name;
-            loginBtn.href = '#';
-        }
+<div class="modal-content">
+<a href="#" class="modal-close">
+<i class="fas fa-times"></i>
+</a>
 
-        // Logout Function
-        logoutBtn.addEventListener('click', () => {
-            // Clear session
-            localStorage.removeItem('currentUser');
-            
-            // Hide dashboard
-            userDashboard.classList.remove('active');
-            
-            // Show main content sections
-            document.querySelector('.hero').style.display = 'flex';
-            document.querySelector('.about').style.display = 'block';
-            document.querySelector('#how-it-works').style.display = 'block';
-            document.querySelector('#features').style.display = 'block';
-            document.querySelector('footer').style.display = 'block';
-            
-            // Reset login button
-            loginBtn.innerHTML = 'Log In';
-            loginBtn.href = '#';
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+<div class="modal-header">
+<div class="modal-logo">
+<i class="fas fa-utensils"></i> Click2Bite
+</div>
+<h2>Create Account</h2>
+<p>Register to start ordering</p>
+</div>
 
-        // Check for existing session on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedUser = localStorage.getItem('currentUser');
-            if (savedUser) {
-                const user = JSON.parse(savedUser);
-                showDashboard(user.name);
-            }
-        });
-    </script>
+<form id="registerForm">
+<div class="form-group">
+<label><i class="fas fa-user"></i> Full Name</label>
+<input type="text" id="regName" required>
+</div>
+
+<div class="form-group">
+<label><i class="fas fa-envelope"></i> Email</label>
+<input type="email" id="regEmail" required>
+</div>
+
+<div class="form-group">
+<label><i class="fas fa-lock"></i> Password</label>
+<input type="password" id="regPassword" required>
+</div>
+
+<button type="submit" class="btn-login-submit">Register</button>
+</form>
+
+<div class="modal-footer">
+<p>
+Already have an account?
+<a href="#loginModal">Log in here</a>
+</p>
+</div>
+</div>
+</div>
+
 </body>
 </html>
