@@ -468,4 +468,140 @@ footer {
     padding: 1rem;
     background: var(--primary-color);
     color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-login-submit:hover {
+    background: #a30000;
+}
+
+.modal-footer {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.modal-footer a {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.modal-footer a:hover {
+    color: var(--secondary-color);
+}
+
+@media (max-width: 992px) {
+
+    .section {
+        padding: 4rem 5%;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .nav-links {
+        gap: 1.5rem;
+    }
+}
+@media (max-width: 768px) {
+
+    nav {
+        padding: 1rem 5%;
+    }
+
+    .menu-toggle {
+        display: block;
+        color: var(--primary-color);
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: var(--white);
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: var(--shadow);
+        display: none;
+        padding: 1rem 0;
+    }
+
+    .nav-links:target {
+        display: flex;
+    }
+
+    .nav-links li {
+        padding: 10px 0;
+    }
+
+    .hero {
+        height: auto;
+        padding: 4rem 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .section {
+        padding: 3rem 5%;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .features-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-box {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+        max-width: 95%;
+    }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.7rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .about p {
+        font-size: 0.95rem;
+    }
+
+    footer {
+        font-size: 0.85rem;
+    }
 }
