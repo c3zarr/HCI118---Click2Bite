@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vendor Dashboard - Stock Management</title>
+
+<style>
+body {
+font-family: Arial;
+margin: 0;
+background: #f4f4f4;
+}
+
+header {
+background: #8b0000;
+color: white;
+padding: 20px;
+text-align: center;
+}
+
+.container {
+padding: 20px;
+}
+
+.form-box {
+background: white;
+padding: 15px;
+border-radius: 10px;
+margin-bottom: 20px;
+box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+input {
+padding: 8px;
+margin: 5px;
+width: 200px;
+}
+
+button {
+padding: 8px 12px;
+background: #8b0000;
+color: white;
+border: none;
+cursor: pointer;
+border-radius: 5px;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+background: white;
+}
+
+th, td {
+padding: 10px;
+border: 1px solid #ddd;
+text-align: center;
+}
+
+th {
+background: #f4a261;
+color: white;
+}
+
+.action-btn {
+padding: 5px 8px;
+margin: 2px;
+cursor: pointer;
+border: none;
+border-radius: 4px;
+}
+
+.delete {
+background: red;
+color: white;
+}
+
+.update {
+background: green;
+color: white;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>VENDOR STOCK MANAGEMENT</h1>
+</header>
+
+<div class="container">
+
+<!-- ADD ITEM -->
+<div class="form-box">
+<h3>Add Food Item</h3>
+
+<input type="text" id="itemName" placeholder="Food Name">
+<input type="number" id="itemQty" placeholder="Stock Quantity">
+<button onclick="addItem()">Add Item</button>
+</div>
+
+<!-- TABLE -->
+<table>
+<thead>
+<tr>
+<th>Food Item</th>
+<th>Stock</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody id="stockTable"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+// LOAD DATA
+let stock = JSON.parse(localStorage.getItem("stock")) || [];
+
+// DISPLAY
+function renderTable(){
+let table = document.getElementById("stockTable");
+table.innerHTML = "";
+
+stock.forEach((item, index) => {
+table.innerHTML += `
+<tr>
+<td>${item.name}</td>
+<td>${item.qty}</td>
+<td>
+<button class="action-btn update" onclick="updateStock(${index})">Update</button>
+<button class="action-btn delete" onclick="deleteItem(${index})">Delete</button>
+</td>
+</tr>
+`;
+});
+}
+
+renderTable();
+
+// ADD ITEM
+function addItem(){
+let name = document.getElementById("itemName").value;
+let qty = document.getElementById("itemQty").value;
+
+if(!name || !qty){
+alert("Fill all fields");
+return;
+}
+
+stock.push({name, qty});
+localStorage.setItem("stock", JSON.stringify(stock));
+
+renderTable();
+}
+
+// UPDATE STOCK
+function updateStock(index){
+let newQty = prompt("Enter new stock quantity:", stock[index].qty);
+
+if(newQty !== null){
+stock[index].qty = newQty;
+localStorage.setItem("stock", JSON.stringify(stock));
+renderTable();
+}
+}
+
+// DELETE ITEM
+function deleteItem(index){
+stock.splice(index, 1);
+localStorage.setItem("stock", JSON.stringify(stock));
+renderTable();
+}
+
+</script>
+
+</body>
+</html>
