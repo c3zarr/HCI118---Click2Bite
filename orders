@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Orders - Click2Bite</title>
+
+<style>
+body {
+font-family: Arial;
+margin: 0;
+background: #f4f4f4;
+}
+
+/* NAV */
+nav {
+background: #8b0000;
+color: white;
+padding: 15px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+/* CONTAINER */
+.container {
+padding: 20px;
+}
+
+/* ORDER CARD */
+.order-card {
+background: white;
+padding: 15px;
+margin-bottom: 20px;
+border-radius: 10px;
+box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* TRACKER */
+.tracker {
+display: flex;
+gap: 5px;
+margin: 10px 0;
+}
+
+.step {
+flex: 1;
+padding: 6px;
+text-align: center;
+border-radius: 5px;
+background: #ddd;
+font-size: 12px;
+transition: 0.3s;
+}
+
+.step.active {
+background: #8b0000;
+color: white;
+}
+
+/* STATUS COLORS */
+.status {
+padding: 3px 8px;
+border-radius: 5px;
+color: white;
+font-size: 12px;
+}
+
+.pending { background: orange; }
+.preparing { background: blue; }
+.ready { background: purple; }
+.completed { background: green; }
+
+/* BUTTON */
+.cancel-btn {
+background: red;
+color: white;
+border: none;
+padding: 5px 10px;
+border-radius: 5px;
+cursor: pointer;
+margin-top: 10px;
+}
+
+.no-orders {
+text-align: center;
+color: gray;
+margin-top: 50px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h2>My Orders</h2>
+<a href="homepage.html" style="color:white;">⬅ Back</a>
+</nav>
+
+<div class="container" id="ordersContainer"></div>
+
+<script>
+
+// LOAD ORDERS
+function loadOrders(){
+
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+let container = document.getElementById("ordersContainer");
+
+container.innerHTML = "";
+
+if(orders.length === 0){
+container.innerHTML = "<p class='no-orders'>No orders yet.</p>";
+return;
+}
+
+orders.forEach((order, index)=>{
+
+let items = order.items.map(i => i.name).join(", ");
+
+container.innerHTML += `
+<div class="order-card">
+
+<h3>Order ID: ${order.id}</h3>
+<p><b>Canteen:</b> ${order.canteen}</p>
+<p><b>Customer:</b> ${order.customer}</p>
+<p><b>Items:</b> ${items}</p>
+<p><b>Total:</b> ₱${order.total}</p>
+
+<p><b>Status:</b> 
+<span class="status ${order.status}">
+${order.status}
+</span>
+</p>
+
+<!-- TRACKER -->
+<div class="tracker" id="tracker-${index}">
+<div class="step">Pending</div>
+<div class="step">Preparing</div>
+<div class="step">Ready</div>
+<div class="step">Done</div>
+</div>
+
+<button class="cancel-btn" onclick="cancelOrder(${index})">
+Cancel Order
+</button>
+
+</div>
+`;
+
+});
+
+// after render → update trackers
+orders.forEach((order, index)=>{
+updateTracker(order.status, index);
+});
+
+}
+
+// TRACKER ANIMATION
+function updateTracker(status, index){
+
+let tracker = document.getElementById(`tracker-${index}`);
+if(!tracker) return;
+
+let steps = tracker.querySelectorAll(".step");
+
+steps.forEach(s => s.classList.remove("active"));
+
+if(status === "pending") steps[0].classList.add("active");
+if(status === "preparing") steps[1].classList.add("active");
+if(status === "ready") steps[2].classList.add("active");
+if(status === "completed") steps[3].classList.add("active");
+
+}
+
+// CANCEL ORDER
+function cancelOrder(index){
+
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+if(confirm("Cancel this order?")){
+
+orders.splice(index, 1);
+
+localStorage.setItem("orders", JSON.stringify(orders));
+
+loadOrders();
+
+}
+
+}
+
+// INIT
+loadOrders();
+
+let lastStatuses = {};
+
+function checkNotifications(){
+
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+orders.forEach(order => {
+
+let prev = lastStatuses[order.id];
+
+if(prev !== "ready" && order.status === "ready"){
+
+alert("🔔 Your order is READY for pickup!\nOrder ID: " + order.id);
+
+}
+
+lastStatuses[order.id] = order.status;
+
+});
+
+}
+
+// run every 3 seconds
+setInterval(checkNotifications, 3000);
+
+</script>
+
+</body>
+</html>
