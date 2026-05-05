@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard - Click2Bite</title>
+
+<style>
+body {
+margin: 0;
+font-family: Arial;
+background: #f4f4f4;
+}
+
+/* TOP BAR */
+header {
+background: #8b0000;
+color: white;
+padding: 15px;
+text-align: center;
+}
+
+/* DASHBOARD CARDS */
+.cards {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 10px;
+padding: 10px;
+}
+
+.card {
+background: white;
+padding: 15px;
+border-radius: 10px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+text-align: center;
+}
+
+/* ORDER QUEUE */
+.queue {
+padding: 10px;
+}
+
+.order {
+background: white;
+margin-bottom: 10px;
+padding: 15px;
+border-radius: 10px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.status {
+padding: 4px 8px;
+border-radius: 5px;
+color: white;
+font-size: 12px;
+}
+
+.pending { background: orange; }
+.preparing { background: blue; }
+.ready { background: purple; }
+.completed { background: green; }
+
+/* BUTTONS */
+button {
+margin: 5px 3px;
+padding: 6px 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.prep-btn { background: blue; color: white; }
+.ready-btn { background: purple; color: white; }
+.done-btn { background: green; color: white; }
+
+/* MOBILE */
+@media(max-width:600px){
+.cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>📊 Click2Bite Admin Dashboard</h2>
+</header>
+
+<!-- ANALYTICS -->
+<div class="cards">
+<div class="card">
+<h3 id="totalOrders">0</h3>
+<p>Total Orders</p>
+</div>
+
+<div class="card">
+<h3 id="totalSales">₱0</h3>
+<p>Total Sales</p>
+</div>
+
+<div class="card">
+<h3 id="pendingOrders">0</h3>
+<p>Pending Orders</p>
+</div>
+
+<div class="card">
+<h3 id="readyOrders">0</h3>
+<p>Ready Orders</p>
+</div>
+</div>
+
+<!-- ORDER QUEUE -->
+<div class="queue" id="orderQueue"></div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"></script>
+
+<script>
+
+// 🔥 FIREBASE CONFIG (REPLACE THIS)
+const firebaseConfig = {
+apiKey: "YOUR_KEY",
+authDomain: "YOUR_APP.firebaseapp.com",
+databaseURL: "https://YOUR_APP.firebaseio.com",
+projectId: "YOUR_APP",
+storageBucket: "YOUR_APP.appspot.com",
+messagingSenderId: "XXXX",
+appId: "XXXX"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// 📦 LIVE ORDERS
+let orders = {};
+
+db.ref("orders").on("value", (snapshot)=>{
+orders = snapshot.val() || {};
+renderDashboard();
+renderOrders();
+});
+
+// 📊 DASHBOARD
+function renderDashboard(){
+
+let total = 0;
+let sales = 0;
+let pending = 0;
+let ready = 0;
+
+Object.values(orders).forEach(o=>{
+
+total++;
+
+sales += o.total || 0;
+
+if(o.status === "pending") pending++;
+if(o.status === "ready") ready++;
+
+});
+
+document.getElementById("totalOrders").innerText = total;
+document.getElementById("totalSales").innerText = "₱" + sales;
+document.getElementById("pendingOrders").innerText = pending;
+document.getElementById("readyOrders").innerText = ready;
+
+}
+
+// 📦 ORDER QUEUE (MC DO STYLE)
+function renderOrders(){
+
+let container = document.getElementById("orderQueue");
+container.innerHTML = "";
+
+Object.entries(orders).forEach(([id, order])=>{
+
+container.innerHTML += `
+<div class="order">
+<h3>${order.canteen}</h3>
+<p><b>${order.customer}</b></p>
+<p>₱${order.total}</p>
+
+<p>
+<span class="status ${order.status}">
+${order.status}
+</span>
+</p>
+
+<button class="prep-btn" onclick="updateStatus('${id}','preparing')">Preparing</button>
+<button class="ready-btn" onclick="updateStatus('${id}','ready')">Ready</button>
+<button class="done-btn" onclick="updateStatus('${id}','completed')">Done</button>
+
+</div>
+`;
+
+});
+
+}
+
+// 🔥 UPDATE STATUS (REAL TIME)
+function updateStatus(id, status){
+
+db.ref("orders/" + id).update({
+status: status
+});
+
+}
+
+</script>
+
+</body>
+</html>
