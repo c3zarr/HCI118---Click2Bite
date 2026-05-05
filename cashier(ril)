@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cashier Dashboard - Order Verification</title>
+
+<style>
+body {
+font-family: Arial;
+margin: 0;
+background: #f4f4f4;
+}
+
+header {
+background: #8b0000;
+color: white;
+padding: 20px;
+text-align: center;
+}
+
+.container {
+padding: 20px;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+background: white;
+}
+
+th, td {
+padding: 12px;
+border: 1px solid #ddd;
+text-align: center;
+}
+
+th {
+background: #f4a261;
+color: white;
+}
+
+.btn {
+padding: 6px 10px;
+border: none;
+cursor: pointer;
+border-radius: 5px;
+}
+
+.approve {
+background: green;
+color: white;
+}
+
+.reject {
+background: red;
+color: white;
+}
+
+.status {
+font-weight: bold;
+}
+
+.pending { color: orange; }
+.verified { color: green; }
+.rejected { color: red; }
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>CASHIER ORDER VERIFICATION</h1>
+</header>
+
+<div class="container">
+
+<h3>Incoming Orders</h3>
+
+<table>
+<thead>
+<tr>
+<th>Customer</th>
+<th>Food</th>
+<th>Qty</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="orderTable"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+// LOAD ORDERS
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+// SAMPLE DATA (for testing if empty)
+if(orders.length === 0){
+orders = [
+{customer:"Juan Dela Cruz", food:"Burger", qty:2, status:"pending"},
+{customer:"Maria Santos", food:"Fries", qty:1, status:"pending"}
+];
+localStorage.setItem("orders", JSON.stringify(orders));
+}
+
+function renderOrders(){
+let table = document.getElementById("orderTable");
+table.innerHTML = "";
+
+orders.forEach((o, index) => {
+
+table.innerHTML += `
+<tr>
+<td>${o.customer}</td>
+<td>${o.food}</td>
+<td>${o.qty}</td>
+
+<td class="status ${o.status}">
+${o.status}
+</td>
+
+<td>
+<button class="btn approve" onclick="verify(${index})">Verify</button>
+<button class="btn reject" onclick="reject(${index})">Reject</button>
+</td>
+
+</tr>
+`;
+
+});
+
+}
+
+renderOrders();
+
+// VERIFY ORDER
+function verify(index){
+orders[index].status = "verified";
+localStorage.setItem("orders", JSON.stringify(orders));
+renderOrders();
+}
+
+// REJECT ORDER
+function reject(index){
+orders[index].status = "rejected";
+localStorage.setItem("orders", JSON.stringify(orders));
+renderOrders();
+}
+
+</script>
+
+</body>
+</html>
