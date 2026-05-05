@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Click2Bite Menu</title>
+
+<style>
+body {
+margin: 0;
+font-family: Arial;
+background: #f5f5f5;
+}
+
+/* NAV */
+nav {
+background: linear-gradient(135deg, #8b0000, #b30000);
+color: white;
+padding: 15px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.canteen-title {
+font-size: 20px;
+font-weight: bold;
+}
+
+.back-btn {
+background: white;
+color: #8b0000;
+padding: 6px 12px;
+border-radius: 20px;
+text-decoration: none;
+font-weight: bold;
+}
+
+/* MENU */
+.menu-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 15px;
+padding: 20px;
+}
+
+.menu-card {
+background: white;
+padding: 15px;
+border-radius: 15px;
+text-align: center;
+box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.price {
+color: #8b0000;
+font-weight: bold;
+}
+
+.menu-card button {
+background: #8b0000;
+color: white;
+border: none;
+padding: 10px;
+width: 100%;
+border-radius: 10px;
+margin-top: 10px;
+cursor: pointer;
+}
+
+/* CART */
+.cart-box {
+position: fixed;
+right: 20px;
+bottom: 20px;
+width: 300px;
+background: white;
+padding: 15px;
+border-radius: 15px;
+box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+input, select {
+width: 100%;
+padding: 8px;
+margin: 5px 0;
+border-radius: 8px;
+border: 1px solid #ccc;
+}
+
+.cart-box button {
+background: #8b0000;
+color: white;
+border: none;
+padding: 10px;
+width: 100%;
+border-radius: 10px;
+cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h2 id="canteenTitle" class="canteen-title">Menu</h2>
+<a href="homepage.html" class="back-btn">⬅ Back</a>
+</nav>
+
+<div class="menu-grid" id="menuContainer"></div>
+
+<div class="cart-box">
+<h3>🛒 Cart</h3>
+<ul id="cartList"></ul>
+
+<input type="text" id="customerName" placeholder="Your Name">
+
+<select id="paymentMethod">
+<option value="cash">Cash</option>
+<option value="gcash">GCash</option>
+</select>
+
+<button onclick="placeOrder()">Place Order</button>
+</div>
+
+<script>
+
+// GET SELECTED CANTEEN
+let canteen = localStorage.getItem("selectedCanteen");
+document.getElementById("canteenTitle").innerText = canteen + " Menu";
+
+// 🧠 MENU DATABASE (EDIT THIS FREELY)
+let menus = {
+
+"JMJJ food corner": [
+{name:"Burger", price:50},
+{name:"Fries", price:30},
+{name:"Chicken Meal", price:80}
+
+
+],
+
+"Crimson cafe": [
+{name:"Coffee", price:40},
+{name:"Latte", price:60},
+{name:"Sandwich", price:70}
+],
+
+"Cups bento": [
+{name:"Bento Meal", price:90},
+{name:"Chicken Bento", price:100}
+],
+
+"Gemz kitchen": [
+{name:"Sisig Rice", price:85},
+{name:"Pork BBQ", price:75}
+],
+
+"Al fresco": [
+{name:"Halo-halo", price:60},
+{name:"Milk Tea", price:70}
+]
+
+};
+
+// LOAD MENU
+let container = document.getElementById("menuContainer");
+
+if(menus[canteen]){
+menus[canteen].forEach(item => {
+
+container.innerHTML += `
+<div class="menu-card">
+<h3>${item.name}</h3>
+<p>₱${item.price}</p>
+<button onclick="addToCart('${item.name}', ${item.price})">Add</button>
+</div>
+`;
+
+});
+}else{
+container.innerHTML = "<p>No menu available</p>";
+}
+
+// 🛒 CART SYSTEM
+let cart = [];
+
+function addToCart(name, price){
+cart.push({name, price});
+renderCart();
+}
+
+function renderCart(){
+let list = document.getElementById("cartList");
+list.innerHTML = "";
+
+cart.forEach(item=>{
+list.innerHTML += `<li>${item.name} - ₱${item.price}</li>`;
+});
+}
+
+// 📦 PLACE ORDER
+function placeOrder(){
+
+let name = document.getElementById("customerName").value;
+let payment = document.getElementById("paymentMethod").value;
+
+if(cart.length === 0){
+alert("Cart is empty");
+return;
+}
+
+if(name === ""){
+alert("Enter your name");
+return;
+}
+
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+let total = cart.reduce((sum, item)=> sum + item.price, 0);
+
+// GENERATE ORDER ID
+let orderId = "CB-" + Math.floor(Math.random()*10000);
+
+let order = {
+id: orderId,
+canteen: canteen,
+customer: name,
+items: cart,
+total: total,
+status: "pending",
+paymentMethod: payment,
+paymentStatus: payment === "cash" ? "unpaid" : "pending"
+};
+
+orders.push(order);
+
+localStorage.setItem("orders", JSON.stringify(orders));
+
+// 💳 SIMULATED PAYMENT
+if(payment === "gcash"){
+alert("Redirecting to GCash...");
+simulateGCash(orderId);
+}else{
+alert("Order placed! Pay at cashier.");
+}
+
+cart = [];
+renderCart();
+}
+
+function simulateGCash(orderId){
+
+setTimeout(()=>{
+
+let orders = JSON.parse(localStorage.getItem("orders"));
+
+let order = orders.find(o => o.id === orderId);
+
+order.paymentStatus = "paid";
+order.status = "preparing";
+
+localStorage.setItem("orders", JSON.stringify(orders));
+
+showReceipt(order);
+
+}, 2000);
+
+}
+
+function showReceipt(order){
+
+let items = order.items.map(i => i.name).join(", ");
+
+alert(
+`RECEIPT
+-----------------
+Order ID: ${order.id}
+Customer: ${order.customer}
+Items: ${items}
+Total: ₱${order.total}
+Payment: ${order.paymentMethod}
+Status: ${order.status}
+`
+);
+
+}
+
+</script>
+
+</body>
+</html>
+
+</body>
+</html>
