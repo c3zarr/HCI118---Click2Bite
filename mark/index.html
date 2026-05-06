@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Click2Bite - WMSU Canteen Ordering</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="landing">
+  <header class="site-header hero-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">C2B</span>
+        <span>Click2Bite</span>
+      </a>
+      <div class="nav-links">
+        <a href="#how-it-works">How it works</a>
+        <a href="admin-login.html">Admin</a>
+      </div>
+    </nav>
+
+    <section class="hero container">
+      <div class="hero-copy">
+        <p class="eyebrow">WMSU canteen ordering system</p>
+        <h1>Order food faster and skip the long canteen line.</h1>
+        <p class="hero-text">Browse campus canteens, add meals to your cart, choose Cash or GCash, and track your order status in one place.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#login-card">Start ordering</a>
+          <a class="btn btn-secondary" href="#login-card">Student login</a>
+        </div>
+      </div>
+      <img class="hero-image" src="assets/images/hero-food.svg" alt="Illustration of campus food trays">
+    </section>
+  </header>
+
+  <main>
+    <section id="login-card" class="auth-grid container">
+      <article class="card auth-card">
+        <h2>Student login</h2>
+        <p class="muted">Use your WMSU email. Use the registered password. Demo account: student@wmsu.edu.ph / password.</p>
+        <form id="loginForm" class="stack">
+          <label>Email
+            <input type="email" id="loginEmail" value="student@wmsu.edu.ph" required>
+          </label>
+          <label>Password
+            <input type="password" id="loginPassword" value="password" required>
+          </label>
+          <button class="btn btn-primary" type="submit">Login</button>
+        </form>
+      </article>
+
+      <article class="card auth-card">
+        <h2>Create account</h2>
+        <p class="muted">Registration is saved locally and appears in the Admin registered accounts panel.</p>
+        <form id="registerForm" class="stack">
+          <label>Full name
+            <input type="text" id="registerName" placeholder="Juan Dela Cruz" required>
+          </label>
+          <label>WMSU email
+            <input type="email" id="registerEmail" placeholder="yourname@wmsu.edu.ph" required>
+          </label>
+          <label>Password
+            <input type="password" id="registerPassword" placeholder="At least 6 characters" minlength="6" required>
+          </label>
+          <button class="btn btn-secondary" type="submit">Register</button>
+        </form>
+      </article>
+    </section>
+
+    <section id="how-it-works" class="container section">
+      <div class="section-heading">
+        <p class="eyebrow">Simple flow</p>
+        <h2>Pick, pay, and track</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="card feature-card">
+          <span class="feature-number">1</span>
+          <h3>Choose a canteen</h3>
+          <p>Search open food stalls around campus and view available meals.</p>
+        </article>
+        <article class="card feature-card">
+          <span class="feature-number">2</span>
+          <h3>Add to cart</h3>
+          <p>Quantities, stock checks, and totals update automatically.</p>
+        </article>
+        <article class="card feature-card">
+          <span class="feature-number">3</span>
+          <h3>Track status</h3>
+          <p>Cashier and admin dashboards can verify and update orders.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <p>&copy; 2026 Click2Bite. Static prototype for HCI118.</p>
+      <div>
+        <a href="vendor.html">Vendor</a>
+        <a href="cashier.html">Cashier</a>
+        <a href="admin-login.html">Admin</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

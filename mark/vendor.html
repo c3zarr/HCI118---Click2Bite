@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Click2Bite - Vendor</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="vendor">
+  <header class="site-header page-header compact-header">
+    <nav class="nav container" aria-label="Vendor navigation">
+      <a class="brand" href="vendor.html">
+        <span class="brand-mark">C2B</span>
+        <span>Vendor</span>
+      </a>
+      <div class="nav-links">
+        <a href="homepage.html">Canteens</a>
+        <a href="cashier.html">Cashier</a>
+        <a href="admin.html">Admin</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container section vendor-layout">
+    <section class="card">
+      <h1>Manage Menu Item</h1>
+      <p class="muted">Add meals and update price, stock, or image. Changes are saved locally and menu images use online food photos.</p>
+      <form id="vendorForm" class="stack">
+        <label>Canteen
+          <select id="vendorCanteen"></select>
+        </label>
+        <label>Item name
+          <input id="vendorName" type="text" placeholder="Chicken Rice" required>
+        </label>
+        <label>Description
+          <input id="vendorDesc" type="text" placeholder="Short item description" required>
+        </label>
+        <div class="two-col">
+          <label>Price
+            <input id="vendorPrice" type="number" min="1" step="1" placeholder="75" required>
+          </label>
+          <label>Stock
+            <input id="vendorStock" type="number" min="0" step="1" placeholder="20" required>
+          </label>
+        </div>
+        <label>Image URL
+          <input id="vendorImage" type="text" list="imageChoices" placeholder="Paste an image URL/path or leave blank for auto image">
+          <datalist id="imageChoices"></datalist>
+        </label>
+        <button class="btn btn-primary" type="submit">Save item</button>
+      </form>
+    </section>
+
+    <section>
+      <div class="section-heading inline-heading">
+        <div>
+          <p class="eyebrow">Inventory</p>
+          <h2>Menu Items</h2>
+        </div>
+        <button id="resetDataBtn" class="btn btn-ghost" type="button">Reset menu/orders</button>
+      </div>
+      <div id="vendorItems" class="vendor-items"></div>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

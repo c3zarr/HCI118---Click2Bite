@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Click2Bite - My Orders</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="orders">
+  <header class="site-header page-header compact-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="homepage.html">
+        <span class="brand-mark">C2B</span>
+        <span>Click2Bite</span>
+      </a>
+      <div class="nav-links">
+        <a href="homepage.html">Canteens</a>
+        <a href="orders.html" aria-current="page">My Orders</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container section">
+    <div class="section-heading inline-heading">
+      <div>
+        <p class="eyebrow">History</p>
+        <h1>My Orders</h1>
+        <p class="muted">Track your latest order status.</p>
+      </div>
+      <button id="clearMyOrders" class="btn btn-ghost" type="button">Clear my orders</button>
+    </div>
+    <section id="ordersList" class="order-list" aria-live="polite"></section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
